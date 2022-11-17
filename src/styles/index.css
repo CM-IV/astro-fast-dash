@@ -1,0 +1,48 @@
+@import "./bulma.min.css";
+
+:root {
+    --accent-gradient: linear-gradient(45deg, #24527a, #f2565a 30%, white 60%);
+    
+}
+
+html, body {
+    background-color: #e3e3e3;
+    height: 100vh;
+}
+
+.text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+}
+
+
+@media (min-width: 768px) {
+    .tile {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+.navbar-burger-toggle + .navbar-burger {
+    margin-top: -3.25em;
+}
+  
+.navbar-burger-toggle:checked + .navbar-burger span:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
+}
+  
+.navbar-burger-toggle:checked + .navbar-burger span:nth-child(2) {
+    opacity: 0;
+}
+  
+.navbar-burger-toggle:checked + .navbar-burger span:nth-child(3) {
+    transform: translateY(-5px) rotate(-45deg);
+}
+  
+.navbar-burger-toggle:checked ~ .navbar-menu {
+    display: block;
+}

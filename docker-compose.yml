@@ -4,9 +4,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=5075
-    build:
-      dockerfile: Dockerfile
-      context: ./
+    image: solonsscale/fast-dash:latest
     working_dir: /app
     stdin_open: true
     ports:

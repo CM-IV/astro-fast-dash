@@ -5,6 +5,14 @@ dist/
 # dependencies
 node_modules/
 
+# pocketbase
+pocketbase
+
+# pocketbase data
+pb_data/
+pb_data/logs.db
+pb_data/data.db
+
 # logs
 npm-debug.log*
 yarn-debug.log*

@@ -1,0 +1,19 @@
+---
+import EditShortcut from "../../../components/preact/editShortcut";
+import Layout from "../../../layouts/MainLayout.astro";
+
+const { id } = Astro.params;
+
+const resShorcut = await fetch(`http://localhost:8090/api/collections/shortcuts/records/${id}`);
+
+const shortcutJson = await resShorcut.json();
+---
+
+<Layout title="Edit Shortcut">
+    <section class="section">
+        <h1 class="title">Edit Shortcut</h1>
+    </section>
+    <section class="section">
+        <EditShortcut data={shortcutJson} client:load />
+    </section>
+</Layout>
