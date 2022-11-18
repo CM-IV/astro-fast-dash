@@ -6,8 +6,7 @@ import { db } from "../../prisma/init";
 
 
 const shortcutData = await db.shortcut.findMany();
-
-console.log(shortcutData);
+console.log(shortcutData)
 ---
 
 <Layout title="Fast-Dash">
@@ -17,37 +16,52 @@ console.log(shortcutData);
 			<h2 class="subtitle">By <a href="https://github.com/CM-IV">CM-IV</a></h2>
 		</section>
 		<section class="section">
-			<h2 class="subtitle">Shortcuts</h2>
-			<div class="tile is-ancestor">
-				{shortcutData.map((s: Shortcut) => {
-					return (
-					<div class="tile is-3 is-parent px-1 py-1">
-						<div class="tile is-child box">
-							<article class="media">
-								<figure class="media-left">
-									<p class="image is-32x32">
-										<img class="is-rounded" src={s.thumbnail}>
-									</p>
-								</figure>
-								<div class="media-content">
-									<a href={s.url}>
-										<div class="content">
-											<p class="is-size-5 has-text-black">{s.name}</p>
+			{shortcutData.length > 0 ? (
+					<h2 class="subtitle">Shortcuts</h2>
+					<div class="tile is-ancestor">
+						{shortcutData.map((s: Shortcut) => {
+							return (
+							<div class="tile is-3 is-parent px-1 py-1">
+								<div class="tile is-child box">
+									<article class="media">
+										<figure class="media-left">
+											<p class="image is-32x32">
+												<img class="is-rounded" src={s.thumbnail}>
+											</p>
+										</figure>
+										<div class="media-content">
+											<a href={s.url}>
+												<div class="content">
+													<p class="is-size-5 has-text-black">{s.name}</p>
+												</div>
+											</a>
 										</div>
-									</a>
+										<div class="media-right">
+											<a href={`/shortcuts/${s.id}/edit`}>
+												<button class="button">View</button>
+											</a>
+										</div>
+									</article>
 								</div>
-								<div class="media-right">
-									<a href={`/shortcuts/${s.id}/edit`}>
-										<button class="button">View</button>
-									</a>
-								</div>
-							</article>
-						</div>
+							</div>
+							)
+						})}
 					</div>
-					)
-				})}
-			</div>
-			<AddShortcuts client:load/>	
+			) : (
+				<div class="columns is-centered">
+					<div class="column is-half">
+						<article class="message is-info">
+							<div class="message-header">
+								<p>Info</p>
+							</div>
+							<div class="message-body">
+								You do not have any shortcuts, please add some.
+							</div>
+						</article>
+					</div>
+				</div>
+			)}
+			<AddShortcuts client:load/>
 		</section>
 	</main>
 </Layout>

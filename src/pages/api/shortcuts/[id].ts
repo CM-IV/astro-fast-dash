@@ -26,12 +26,12 @@ export const put: APIRoute = async ({ request, params }) => {
 
 }
 
-export const del: APIRoute = async ({ params }) => {
+export const del: APIRoute = async ({ params, redirect }) => {
 
     try {
         const id = params.id as string;
 
-        await db.shortcut.delete({
+        const del = await db.shortcut.delete({
             where: {
                 id: id
             }
@@ -42,6 +42,40 @@ export const del: APIRoute = async ({ params }) => {
             status: 200,
             statusText: "Deleted Successfully"
         })
+
+    } catch (error) {
+        console.log(error);
+        throw new Error;
+    }
+
+}
+
+export const get: APIRoute = async ({ params }) => {
+
+    try {
+        const id = params.id as string;
+
+        const shortcut = await db.shortcut.findUnique({
+            where: {
+                id: id as string
+            }
+        })
+
+        if (!shortcut) {
+            return new Response(null, {
+                status: 404,
+                statusText: 'Not found'
+            });
+        }
+
+
+        return new Response(JSON.stringify(shortcut), {
+            status: 200,
+            headers: {
+              "Content-Type": "application/json"
+            }
+        });
+
     } catch (error) {
         console.log(error);
         throw new Error;

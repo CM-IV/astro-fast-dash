@@ -1,15 +1,8 @@
 ---
 import EditShortcut from "../../../components/preact/editShortcut";
 import Layout from "../../../layouts/MainLayout.astro";
-import { db } from "../../../../prisma/init";
 
 const { id } = Astro.params;
-
-const shortcut = await db.shortcut.findUnique({
-    where: {
-        id: id as string
-    }
-})
 
 ---
 
@@ -18,6 +11,6 @@ const shortcut = await db.shortcut.findUnique({
         <h1 class="title">Edit Shortcut</h1>
     </section>
     <section class="section">
-        <EditShortcut data={shortcut} client:load />
+        <EditShortcut data={id} client:load />
     </section>
 </Layout>

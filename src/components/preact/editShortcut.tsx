@@ -5,10 +5,25 @@ const EditShortcut = ({ data }: any) => {
     const [url, setUrl] = useState<string>("");
     const [thumbnail, setThumbnail] = useState<string>("");
 
-    const setShortcut = () => {
-        setName(data.name);
-        setUrl(data.url);
-        setThumbnail(data.thumbnail);
+    const setShortcut = async () => {
+
+        try {
+            const shortcutData = await fetch(`/api/shortcuts/${data}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const shortcut = await shortcutData.json();
+            console.log(data)
+
+            setName(shortcut.name);
+            setUrl(shortcut.url);
+            setThumbnail(shortcut.thumbnail);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     useEffect(() => {
@@ -19,7 +34,7 @@ const EditShortcut = ({ data }: any) => {
         e.preventDefault();
 
         try {
-            await fetch(`/api/shortcuts/${data.id}`, {
+            await fetch(`/api/shortcuts/${data}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -40,7 +55,7 @@ const EditShortcut = ({ data }: any) => {
         e.preventDefault();
 
         try {
-            await fetch(`/api/shortcuts/${data.id}`, {
+            await fetch(`/api/shortcuts/${data}`, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
@@ -61,7 +76,7 @@ const EditShortcut = ({ data }: any) => {
                         <label class="label">Name</label>
                         <div class="control">
                             <input
-                            value={data.name}
+                            value={name}
                             onChange={(e) => setName(e.currentTarget.value)}
                             class="input" 
                             type="text"
@@ -73,7 +88,7 @@ const EditShortcut = ({ data }: any) => {
                         <label class="label">URL</label>
                         <div class="control">
                             <input
-                            value={data.url}
+                            value={url}
                             onChange={(e) => setUrl(e.currentTarget.value)}
                             class="input" 
                             type="url"
@@ -85,7 +100,7 @@ const EditShortcut = ({ data }: any) => {
                         <label class="label">Thumbnail</label>
                         <div class="control">
                             <input
-                            value={data.thumbnail}
+                            value={thumbnail}
                             onChange={(e) => setThumbnail(e.currentTarget.value)}
                             class="input" 
                             type="url"
