@@ -21,7 +21,7 @@ console.log(shortcutData);
 			<div class="tile is-ancestor">
 				{shortcutData.map((s: Shortcut) => {
 					return (
-					<div class="tile is-3 is-parent px-1">
+					<div class="tile is-3 is-parent px-1 py-1">
 						<div class="tile is-child box">
 							<article class="media">
 								<figure class="media-left">
@@ -47,8 +47,6 @@ console.log(shortcutData);
 					)
 				})}
 			</div>
-		</section>
-		<section class="section">
 			<AddShortcuts client:load/>	
 		</section>
 	</main>
