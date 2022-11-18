@@ -3,30 +3,15 @@ services:
   client:
     environment:
       - NODE_ENV=production
-      - PORT=5075
+      - PORT=5076
     image: solonsscale/fast-dash:latest
     working_dir: /app
     stdin_open: true
     ports:
-      - "5075:5075"
+      - "5076:5076"
     restart: unless-stopped
     volumes:
       - data:/app
-
-  pocketbase:
-    image: ghcr.io/muchobien/pocketbase:0.8.0-rc3
-    container_name: pocketbase
-    restart: unless-stopped
-    #command:
-      #- --encryptionEnv #optional
-      #- ENCRYPTION #optional
-    #environment:
-      #ENCRYPTION: example #optional
-    ports:
-      - "8090:8090"
-    volumes:
-      - ./pb_data:/pb_data
-      #- /path/to/public:/pb_public #optional
 
 volumes:
   data:

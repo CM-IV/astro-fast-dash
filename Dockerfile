@@ -1,10 +1,20 @@
-########## BUILDER ##########
+##### BUILDER
 
 FROM node:18-slim as builder
 
 WORKDIR /app
 
-COPY . .
+LABEL name=fast-dash
+LABEL intermediate=true
+
+COPY package.json .
+COPY .env .
+COPY astro.config.mjs .
+COPY public/ public/
+COPY src/ src/
+COPY prisma/ prisma/
+COPY pnpm-lock.yaml .
+COPY tsconfig.json .
 
 RUN corepack enable
 
@@ -12,12 +22,18 @@ RUN pnpm install
 
 RUN pnpm run build
 
-########## RUNNER ##########
+##### RUNNER
 
-FROM node:18-slim
+FROM node:alpine
 
 WORKDIR /app
 
-COPY --from=builder /app/dist ./dist
+LABEL name=fast-dash
 
-CMD ["node", "./dist/server/entry.mjs"]
+COPY --from=builder /app/ .
+
+RUN apk update && apk add --no-cache libc6-compat
+
+RUN corepack enable && corepack prepare pnpm@7.15.0 --activate 
+
+CMD ["pnpm", "run", "migrate"]

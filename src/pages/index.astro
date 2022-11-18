@@ -2,12 +2,12 @@
 import Layout from '../layouts/MainLayout.astro';
 import type { Shortcut } from '../types';
 import AddShortcuts from '../components/preact/addShortcuts';
+import { db } from "../../prisma/init";
 
-const resShorcut = await fetch(`http://localhost:8090/api/collections/shortcuts/records?page=1&perPage=60`);
 
-const shortcutJson = await resShorcut.json();
+const shortcutData = await db.shortcut.findMany();
 
-const shortcutData = shortcutJson?.items as any[];
+console.log(shortcutData);
 ---
 
 <Layout title="Fast-Dash">
@@ -17,48 +17,36 @@ const shortcutData = shortcutJson?.items as any[];
 			<h2 class="subtitle">By <a href="https://github.com/CM-IV">CM-IV</a></h2>
 		</section>
 		<section class="section">
-			{shortcutJson.totalItems > 0 ? (
-				<h2 class="subtitle">Shortcuts</h2>
-				<div class="tile is-ancestor">
-					{shortcutData.map((s: Shortcut) => {
-						return (
-						<div class="tile is-3 is-parent px-1">
-							<div class="tile is-child box">
-								<article class="media">
-									<figure class="media-left">
-										<p class="image is-32x32">
-											<img class="is-rounded" src={s.thumbnail}>
-										</p>
-									</figure>
-									<div class="media-content">
-										<a href={s.url}>
-											<div class="content">
-												<p class="is-size-5 has-text-black">{s.name}</p>
-											</div>
-										</a>
-									</div>
-									<div class="media-right">
-										<a href={`/shortcuts/${s.id}/edit`}>
-											<button class="button">View</button>
-										</a>
-									</div>
-								</article>
-							</div>
-						</div>
-						)
-					})}
-				</div>
-			) : (
-				<div class="tile is-ancestor">
-					<div class="is-6">
-						<div class="tile">
-							<div class="notification is-primary">
-								You do not have any shortcuts, please add some.
-							</div>
+			<h2 class="subtitle">Shortcuts</h2>
+			<div class="tile is-ancestor">
+				{shortcutData.map((s: Shortcut) => {
+					return (
+					<div class="tile is-3 is-parent px-1">
+						<div class="tile is-child box">
+							<article class="media">
+								<figure class="media-left">
+									<p class="image is-32x32">
+										<img class="is-rounded" src={s.thumbnail}>
+									</p>
+								</figure>
+								<div class="media-content">
+									<a href={s.url}>
+										<div class="content">
+											<p class="is-size-5 has-text-black">{s.name}</p>
+										</div>
+									</a>
+								</div>
+								<div class="media-right">
+									<a href={`/shortcuts/${s.id}/edit`}>
+										<button class="button">View</button>
+									</a>
+								</div>
+							</article>
 						</div>
 					</div>
-				</div>
-			)}
+					)
+				})}
+			</div>
 		</section>
 		<section class="section">
 			<AddShortcuts client:load/>	

@@ -19,10 +19,10 @@ const EditShortcut = ({ data }: any) => {
         e.preventDefault();
 
         try {
-            await fetch(`http://localhost:8090/api/collections/shortcuts/records/${data.id}`, {
-                method: "PATCH",
+            await fetch(`/api/shortcuts/${data.id}`, {
+                method: "PUT",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     name: name,
@@ -40,10 +40,10 @@ const EditShortcut = ({ data }: any) => {
         e.preventDefault();
 
         try {
-            await fetch(`http://localhost:8090/api/collections/shortcuts/records/${data.id}`, {
+            await fetch(`/api/shortcuts/${data.id}`, {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
             })
             window.location.replace("/");
@@ -55,11 +55,6 @@ const EditShortcut = ({ data }: any) => {
 
     return (
         <div class="card">
-            <div class="card-header">
-                <div class="card-header-title">
-                    <h2 class="subtitle">Add a Shortcut</h2>
-                </div>
-            </div>
             <div class="card-content">
                 <form onSubmit={changeShortcut}>
                     <div class="field">

@@ -14,10 +14,10 @@ const AddShortcuts = () => {
         e.preventDefault();
 
         try {
-            await fetch("http://localhost:8090/api/collections/shortcuts/records", {
+            await fetch("/api/shortcuts", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     name: name,

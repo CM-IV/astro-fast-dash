@@ -1,12 +1,16 @@
 ---
 import EditShortcut from "../../../components/preact/editShortcut";
 import Layout from "../../../layouts/MainLayout.astro";
+import { db } from "../../../../prisma/init";
 
 const { id } = Astro.params;
 
-const resShorcut = await fetch(`http://localhost:8090/api/collections/shortcuts/records/${id}`);
+const shortcut = await db.shortcut.findUnique({
+    where: {
+        id: id as string
+    }
+})
 
-const shortcutJson = await resShorcut.json();
 ---
 
 <Layout title="Edit Shortcut">
@@ -14,6 +18,6 @@ const shortcutJson = await resShorcut.json();
         <h1 class="title">Edit Shortcut</h1>
     </section>
     <section class="section">
-        <EditShortcut data={shortcutJson} client:load />
+        <EditShortcut data={shortcut} client:load />
     </section>
 </Layout>

@@ -7,12 +7,16 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prod": "node ./dist/server/entry.mjs",
+    "migrate": "pnpx prisma generate && pnpx prisma migrate deploy && pnpm run prod"
   },
   "dependencies": {
     "@astrojs/node": "^3.1.0",
     "@astrojs/preact": "^1.2.0",
+    "@prisma/client": "^4.6.1",
     "astro": "^1.6.10",
-    "preact": "^10.11.3"
+    "preact": "^10.11.3",
+    "prisma": "^4.6.1"
   }
 }
