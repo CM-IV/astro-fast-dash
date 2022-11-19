@@ -1,8 +1,8 @@
 @import "./bulma.min.css";
+@import "./fork-awesome.min.css";
 
 :root {
     --accent-gradient: linear-gradient(45deg, #24527a, #f2565a 30%, white 60%);
-    
 }
 
 html, body {
@@ -18,24 +18,41 @@ html, body {
     background-position: 0%;
 }
 
+.search-bar {
+    display: flex;
+    justify-content: right;
+}
 
-@media (min-width: 768px) {
+
+@media (min-width: 1024px) {
     .tile {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-    }
-
-    .search-bar {
-        display: flex;
-        justify-content: right;
+        flex-shrink: 0;
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1407px) {
+    .tile {
+        min-width: 0;
+        min-height: 0;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 1023px) {
     .search-bar {
+        align-content: center;
+        justify-content: center;
         margin-bottom: 2rem;
     }
+}
+
+svg {
+    width: 200px;
+    height: 200px;
+    margin: 25px;
 }
 
 .navbar-burger-toggle + .navbar-burger {

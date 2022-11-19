@@ -6,6 +6,7 @@ const SearchShortcuts = () => {
 
     const [searchData, setSearchData] = useState<Shortcut[]>([]);
     const [shortcutData, setShortcutData] = useState<Shortcut[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getShortcuts = async () => {
 
@@ -24,6 +25,8 @@ const SearchShortcuts = () => {
             setShortcutData(shortcut);
         } catch (error) {
             console.error(error);
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -65,36 +68,37 @@ const SearchShortcuts = () => {
         <>
         <div className="columns is-centered">
             <div className="column is-half">
-                <section class="section">
-                    <h1 class="title">Welcome to <span class="text-gradient">Fast</span>Dash</h1>
-                    <h2 class="subtitle">By <a href="https://github.com/CM-IV">CM-IV</a></h2>
-                </section>
+                <h1 class="title">Welcome to <span class="text-gradient">Fast</span>Dash</h1>
+                <h2 class="subtitle">By <a href="https://github.com/CM-IV">CM-IV</a></h2>
             </div>
             <div className="column is-half">
-                <article class="media mt-6">
+                <article class="media">
                     <div className="media-content">
                         <div class="field search-bar">
-                            <div class="control">
+                            <div class="control has-icons-left">
                                 <input 
                                 class="input is-rounded" 
                                 type="text" 
                                 placeholder="Search" 
                                 onChange={(e) => handleSearch(e.currentTarget.value)}
                                 />
+                                <span className="icon is-small is-left">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </article>
             </div>
         </div>
-			{searchData.length > 0 ? (
+			{!isLoading ? (
 					<>
                         <h2 class="subtitle">Shortcuts</h2>
                         <div class="tile is-ancestor">
                         {searchData.map((s: Shortcut) => {
                             return (
                                 <div class="tile is-3 is-parent px-1 py-1">
-                                    <div class="tile is-child box">
+                                    <div class="tile is-child box is-justify-content-center">
                                         <article class="media">
                                             <figure class="media-left">
                                                 <p class="image is-32x32">
@@ -108,9 +112,11 @@ const SearchShortcuts = () => {
                                                     </div>
                                                 </a>
                                             </div>
-                                            <div class="media-right">
+                                            <div className="media-right">
                                                 <a href={`/shortcuts/${s.id}/edit`}>
-                                                    <button class="button">View</button>
+                                                    <span class="icon is-small mt-2">
+                                                        <i class="fa fa-ellipsis-v has-text-black"></i>
+                                                    </span>
                                                 </a>
                                             </div>
                                         </article>
@@ -121,7 +127,36 @@ const SearchShortcuts = () => {
                     </div>
                 </>
 			) : (
-				<div class="columns is-centered">
+				<svg version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 100 100" enableBackground="new 0 0 0 0" xmlSpace="preserve">
+                    <circle fill="#ff3c4f" stroke="none" cx="6" cy="50" r="6">
+                        <animate
+                        attributeName="opacity"
+                        dur="1s"
+                        values="0;1;0"
+                        repeatCount="indefinite"
+                        begin="0.1"/>    
+                    </circle>
+                    <circle fill="#ff3c4f" stroke="none" cx="26" cy="50" r="6">
+                        <animate
+                        attributeName="opacity"
+                        dur="1s"
+                        values="0;1;0"
+                        repeatCount="indefinite" 
+                        begin="0.2"/>       
+                    </circle>
+                    <circle fill="#ff3c4f" stroke="none" cx="46" cy="50" r="6">
+                        <animate
+                        attributeName="opacity"
+                        dur="1s"
+                        values="0;1;0"
+                        repeatCount="indefinite" 
+                        begin="0.3"/>     
+                    </circle>
+                </svg>
+			)}
+            {!isLoading && shortcutData.length == 0 && (
+                <div class="columns is-centered">
 					<div class="column is-half">
 						<article class="message is-info">
 							<div class="message-header">
@@ -133,7 +168,7 @@ const SearchShortcuts = () => {
 						</article>
 					</div>
 				</div>
-			)}
+            )}
         </>
     )
 }
