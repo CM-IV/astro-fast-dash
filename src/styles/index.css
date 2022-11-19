@@ -25,6 +25,17 @@ html, body {
         flex-direction: row;
         flex-wrap: wrap;
     }
+
+    .search-bar {
+        display: flex;
+        justify-content: right;
+    }
+}
+
+@media (max-width: 767px) {
+    .search-bar {
+        margin-bottom: 2rem;
+    }
 }
 
 .navbar-burger-toggle + .navbar-burger {

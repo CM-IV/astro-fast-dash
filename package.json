@@ -16,6 +16,7 @@
     "@astrojs/preact": "^1.2.0",
     "@prisma/client": "^4.6.1",
     "astro": "^1.6.10",
+    "fuse.js": "^6.6.2",
     "preact": "^10.11.3",
     "prisma": "^4.6.1"
   }

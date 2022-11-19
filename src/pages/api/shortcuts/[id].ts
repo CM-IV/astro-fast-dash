@@ -21,7 +21,7 @@ export const put: APIRoute = async ({ request, params }) => {
         })
     } catch (error) {
         console.log(error);
-        throw new Error;
+        throw error;
     }
 
 }
@@ -45,7 +45,7 @@ export const del: APIRoute = async ({ params, redirect }) => {
 
     } catch (error) {
         console.log(error);
-        throw new Error;
+        throw error;
     }
 
 }
