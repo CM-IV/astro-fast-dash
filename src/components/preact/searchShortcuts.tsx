@@ -19,7 +19,6 @@ const SearchShortcuts = () => {
             });
 
             const shortcut = await allShortcuts.json();
-            console.log(shortcut)
 
             setSearchData(shortcut);
             setShortcutData(shortcut);
