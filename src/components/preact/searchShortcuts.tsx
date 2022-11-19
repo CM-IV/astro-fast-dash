@@ -101,7 +101,7 @@ const SearchShortcuts = () => {
                                         <article class="media">
                                             <figure class="media-left">
                                                 <p class="image is-32x32">
-                                                    <img class="is-rounded" src={s.thumbnail} />
+                                                    <img class="is-rounded" src={s.thumbnail} alt="shortcut image" />
                                                 </p>
                                             </figure>
                                             <div class="media-content">
