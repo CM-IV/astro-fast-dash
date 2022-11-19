@@ -1,5 +1,4 @@
 @import "./bulma.min.css";
-@import "./fork-awesome.min.css";
 
 :root {
     --accent-gradient: linear-gradient(45deg, #24527a, #f2565a 30%, white 60%);
