@@ -1,19 +1,26 @@
 import type { APIRoute } from "astro";
-import { db } from "../../../prisma/init";
+import { handleShortcut } from "@utils/validator";
+import { db } from "@prisma/init";
 
 
 export const post: APIRoute = async ({ request }) => {
 
     try {
-        const body = await request.json();
+        const result = await handleShortcut(await request.json());
+
+        if (!result.success) {
+            return new Response(JSON.stringify(result.error.message), {
+                status: 400,
+                statusText: "Bad Request"
+            })
+        }
 
         await db.shortcut.create({
-            data: { ...body },
+            data: { ...result.data },
         })
 
-
         return new Response(null, {
-            status: 204,
+            status: 201,
             statusText: "Created Successfully"
         })
     } catch (error) {

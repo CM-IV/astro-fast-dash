@@ -1,5 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
-import type { Shortcut } from "../../types";
+import type { Shortcut } from "@src/types";
 import Fuse from "fuse.js";
 
 const SearchShortcuts = () => {

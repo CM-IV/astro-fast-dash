@@ -16,7 +16,6 @@ const EditShortcut = ({ data }: any) => {
             });
 
             const shortcut = await shortcutData.json();
-            console.log(data)
 
             setName(shortcut.name);
             setUrl(shortcut.url);

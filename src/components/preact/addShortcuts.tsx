@@ -25,6 +25,7 @@ const AddShortcuts = () => {
                     thumbnail: thumbnail
                 }),
             });
+
             window.location.reload();
         } catch (error) {
             console.error(error)
@@ -49,10 +50,10 @@ const AddShortcuts = () => {
                                         <label class="label">Name</label>
                                         <div class="control">
                                             <input
-                                            defaultValue={""}
                                             onChange={(e) => setName(e.currentTarget.value)}
                                             class="input" 
                                             type="text"
+                                            defaultValue={""}
                                             required
                                             />
                                         </div>
@@ -61,10 +62,10 @@ const AddShortcuts = () => {
                                         <label class="label">URL</label>
                                         <div class="control">
                                             <input
-                                            defaultValue={""}
                                             onChange={(e) => setUrl(e.currentTarget.value)}
                                             class="input" 
                                             type="url"
+                                            defaultValue={""}
                                             required
                                             />
                                         </div>
@@ -73,10 +74,10 @@ const AddShortcuts = () => {
                                         <label class="label">Thumbnail</label>
                                         <div class="control">
                                             <input
-                                            defaultValue={""}
                                             onChange={(e) => setThumbnail(e.currentTarget.value)}
                                             class="input" 
                                             type="url"
+                                            defaultValue={""}
                                             required
                                             />
                                         </div>

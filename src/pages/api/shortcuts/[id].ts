@@ -1,23 +1,31 @@
 import type { APIRoute } from "astro";
-import { db } from "../../../../prisma/init";
+import { db } from "@prisma/init";
+import { handleShortcut } from "@utils/validator";
 
 export const put: APIRoute = async ({ request, params }) => {
 
     try {
         const id = params.id as string;
-        const body = await request.json();
+        const result = await handleShortcut(await request.json());
+
+        if (!result.success) {
+            return new Response(JSON.stringify(result.error.message), {
+                status: 400,
+                statusText: "Bad Request"
+            })
+        }
 
         await db.shortcut.update({
             where: {
                 id: id
             },
-            data: { ...body },
+            data: { ...result.data },
         })
 
 
         return new Response(null, {
-            status: 204,
-            statusText: "Created Successfully"
+            status: 200,
+            statusText: "Updated Successfully"
         })
     } catch (error) {
         console.log(error);
@@ -26,12 +34,12 @@ export const put: APIRoute = async ({ request, params }) => {
 
 }
 
-export const del: APIRoute = async ({ params, redirect }) => {
+export const del: APIRoute = async ({ params }) => {
 
     try {
         const id = params.id as string;
 
-        const del = await db.shortcut.delete({
+        await db.shortcut.delete({
             where: {
                 id: id
             }
