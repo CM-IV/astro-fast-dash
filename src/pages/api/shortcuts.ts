@@ -19,7 +19,7 @@ export const post: APIRoute = async ({ request }) => {
             data: { ...result.data },
         })
 
-        return new Response(null, {
+        return new Response(JSON.stringify(result.data), {
             status: 201,
             statusText: "Created Successfully"
         })

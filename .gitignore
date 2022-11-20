@@ -5,11 +5,9 @@ dist/
 # dependencies
 node_modules/
 
-# pocketbase
-pocketbase
+# sqlite db
+db/
 
-# pocketbase data
-pb_data/
 
 # logs
 npm-debug.log*

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "preact/hooks";
-import type { Shortcut } from "@src/types";
+import type { ShortCutOutput } from "@utils/validator";
 import Fuse from "fuse.js";
 
 const SearchShortcuts = () => {
 
-    const [searchData, setSearchData] = useState<Shortcut[]>([]);
-    const [shortcutData, setShortcutData] = useState<Shortcut[]>([]);
+    const [searchData, setSearchData] = useState<ShortCutOutput[]>([]);
+    const [shortcutData, setShortcutData] = useState<ShortCutOutput[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const getShortcuts = async () => {
@@ -40,7 +40,7 @@ const SearchShortcuts = () => {
           return;
         }
     
-        const options: Fuse.IFuseOptions<Shortcut> = {
+        const options: Fuse.IFuseOptions<ShortCutOutput> = {
           includeScore: true,
           keys: ['name']
         }
@@ -48,7 +48,7 @@ const SearchShortcuts = () => {
         const fuse = new Fuse(shortcutData, options);
     
         const result = fuse.search(query);
-        const finalResult: Shortcut[] = [];
+        const finalResult: ShortCutOutput[] = [];
     
     
         if (!result.length) {
@@ -94,7 +94,7 @@ const SearchShortcuts = () => {
 					<>
                         <h2 class="subtitle">Shortcuts</h2>
                         <div class="tile is-ancestor">
-                        {searchData.map((s: Shortcut) => {
+                        {searchData.map((s: ShortCutOutput) => {
                             return (
                                 <div class="tile is-3 is-parent px-1 py-1">
                                     <div class="tile is-child box is-justify-content-center">

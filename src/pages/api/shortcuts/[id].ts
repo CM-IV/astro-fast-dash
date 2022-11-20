@@ -23,7 +23,7 @@ export const put: APIRoute = async ({ request, params }) => {
         })
 
 
-        return new Response(null, {
+        return new Response(JSON.stringify(result.data), {
             status: 200,
             statusText: "Updated Successfully"
         })

@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "prod": "node ./dist/server/entry.mjs",
-    "migrate": "pnpx prisma generate && pnpx prisma migrate deploy && pnpm run prod"
+    "migrate": "pnpx prisma generate && pnpx prisma migrate deploy",
+    "prod:migrate": "pnpm run migrate && pnpm run prod"
   },
   "dependencies": {
     "@astrojs/node": "^3.1.0",
