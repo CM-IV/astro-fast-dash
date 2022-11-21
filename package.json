@@ -3,11 +3,6 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -15,6 +10,8 @@
     "astro": "astro",
     "prod": "node ./dist/server/entry.mjs",
     "prettier": "pnpx prettier write .",
+    "precommit": "pretty-quick --staged",
+    "prepare": "husky install",
     "migrate": "pnpx prisma generate && pnpx prisma migrate deploy",
     "prod:migrate": "pnpm run migrate && pnpm run prod"
   },
