@@ -6,7 +6,7 @@
       "@src/*": ["src/*"],
       "@api/*": ["src/pages/api/*"],
       "@utils/*": ["src/utils/*"],
-      "@prisma/*": ["prisma/*"],
+      "@db/*": ["prisma/*"],
       "@layouts/*": ["src/layouts/*"],
       "@components/*": ["src/components/*"]
     },

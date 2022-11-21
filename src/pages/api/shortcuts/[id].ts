@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { db } from "@prisma/init";
+import { db } from "@db/init";
 import { handleShortcut } from "@utils/validator";
 
 export const put: APIRoute = async ({ request, params }) => {

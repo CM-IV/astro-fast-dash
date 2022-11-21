@@ -1,23 +1,25 @@
 import type { APIRoute } from "astro";
-import { handleShortcut } from "@utils/validator";
+import { handleBulkShortcut } from "@utils/validator";
 import { db } from "@db/init";
 
 export const post: APIRoute = async ({ request }) => {
   try {
-    const result = await handleShortcut(await request.json());
+    const reqData = await request.json();
+
+    const result = await handleBulkShortcut(reqData.shortcutData);
 
     if (!result.success) {
-      return new Response(JSON.stringify(result.error.message), {
+      return new Response(JSON.stringify(result), {
         status: 400,
         statusText: "Bad Request",
       });
     }
 
-    await db.shortcut.create({
-      data: { ...result.data },
+    await db.shortcut.createMany({
+      data: result.data,
     });
 
-    return new Response(JSON.stringify(result.data), {
+    return new Response(JSON.stringify(result), {
       status: 201,
       statusText: "Created Successfully",
     });
@@ -30,6 +32,16 @@ export const post: APIRoute = async ({ request }) => {
 export const get: APIRoute = async () => {
   try {
     const shortCuts = await db.shortcut.findMany();
+    const bulkData = [] as any[];
+
+    shortCuts.map((shortcut) => {
+      const shortcutObj = {
+        name: shortcut.name,
+        url: shortcut.url,
+        thumbnail: shortcut.thumbnail,
+      };
+      bulkData.push(shortcutObj);
+    });
 
     if (!shortCuts) {
       return new Response(null, {
@@ -38,7 +50,7 @@ export const get: APIRoute = async () => {
       });
     }
 
-    return new Response(JSON.stringify(shortCuts), {
+    return new Response(JSON.stringify(bulkData), {
       status: 200,
       statusText: "Fetched Successfully",
     });

@@ -1,0 +1,18 @@
+---
+import Layout from '@layouts/MainLayout.astro';
+import BulkExport from '@src/components/preact/bulkExport';
+import BulkImport from '@src/components/preact/bulkImport';
+---
+
+<Layout title="Settings">
+	<main>
+		<div class="columns is-centered">
+			<div class="column is-half">
+				<BulkImport client:load />
+			</div>
+			<div class="column is-half">
+				<BulkExport client:load />
+			</div>
+		</div>
+	</main>
+</Layout>
