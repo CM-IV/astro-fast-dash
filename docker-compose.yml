@@ -4,7 +4,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=5076
-    image: solonsscale/fast-dash:latest
+    image: solonsscale/fast-dash-postgres:latest
     working_dir: /app
     stdin_open: true
     ports:
@@ -14,21 +14,18 @@ services:
       - data:/app
     depends_on:
       - db
-
   db:
     image: postgres:13-alpine
     restart: always
+    container_name: db
     environment:
       - POSTGRES_DB=Shortcuts
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
     volumes:
       - pg-data:/var/lib/postgresql/data
-    networks:
-      - capstone-app
     ports:
       - 5432:5432
-
 volumes:
   data:
   pg-data:

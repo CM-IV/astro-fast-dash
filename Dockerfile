@@ -10,7 +10,6 @@ LABEL intermediate=true
 COPY package.json .
 COPY .env .
 COPY astro.config.mjs .
-COPY public/ public/
 COPY src/ src/
 COPY prisma/ prisma/
 COPY pnpm-lock.yaml .
