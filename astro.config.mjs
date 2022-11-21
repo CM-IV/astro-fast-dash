@@ -1,5 +1,5 @@
-import { defineConfig } from 'astro/config';
-import node from '@astrojs/node';
+import { defineConfig } from "astro/config";
+import node from "@astrojs/node";
 
 // https://astro.build/config
 import preact from "@astrojs/preact";
@@ -8,11 +8,11 @@ import preact from "@astrojs/preact";
 export default defineConfig({
   server: {
     port: 5076,
-    host: "0.0.0.0"
+    host: "0.0.0.0",
   },
-  output: 'server',
+  output: "server",
   adapter: node({
-    mode: 'standalone'
+    mode: "standalone",
   }),
-  integrations: [preact()]
+  integrations: [preact()],
 });

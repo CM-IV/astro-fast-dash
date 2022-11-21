@@ -8,7 +8,7 @@
       "@utils/*": ["src/utils/*"],
       "@prisma/*": ["prisma/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@components/*": ["src/components/*"],
+      "@components/*": ["src/components/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "preact",

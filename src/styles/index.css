@@ -1,75 +1,75 @@
 @import "./bulma.min.css";
 
 :root {
-    --accent-gradient: linear-gradient(45deg, #24527a, #f2565a 30%, white 60%);
+  --accent-gradient: linear-gradient(45deg, #24527a, #f2565a 30%, white 60%);
 }
 
-html, body {
-    background-color: #e3e3e3;
-    height: 100vh;
+html,
+body {
+  background-color: #e3e3e3;
+  height: 100vh;
 }
 
 .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
+  background-image: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400%;
+  background-position: 0%;
 }
 
 .search-bar {
-    display: flex;
-    justify-content: right;
+  display: flex;
+  justify-content: right;
 }
 
-
 @media (min-width: 1024px) {
-    .tile {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        flex-shrink: 0;
-    }
+  .tile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
 }
 
 @media (max-width: 1407px) {
-    .tile {
-        min-width: 0;
-        min-height: 0;
-        overflow: hidden;
-    }
+  .tile {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 1023px) {
-    .search-bar {
-        align-content: center;
-        justify-content: center;
-        margin-bottom: 2rem;
-    }
+  .search-bar {
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
 }
 
 svg {
-    width: 200px;
-    height: 200px;
-    margin: 25px;
+  width: 200px;
+  height: 200px;
+  margin: 25px;
 }
 
 .navbar-burger-toggle + .navbar-burger {
-    margin-top: -3.25em;
+  margin-top: -3.25em;
 }
-  
+
 .navbar-burger-toggle:checked + .navbar-burger span:nth-child(1) {
-    transform: translateY(5px) rotate(45deg);
+  transform: translateY(5px) rotate(45deg);
 }
-  
+
 .navbar-burger-toggle:checked + .navbar-burger span:nth-child(2) {
-    opacity: 0;
+  opacity: 0;
 }
-  
+
 .navbar-burger-toggle:checked + .navbar-burger span:nth-child(3) {
-    transform: translateY(-5px) rotate(-45deg);
+  transform: translateY(-5px) rotate(-45deg);
 }
-  
+
 .navbar-burger-toggle:checked ~ .navbar-menu {
-    display: block;
+  display: block;
 }
