@@ -11,7 +11,7 @@
     "prod": "node ./dist/server/entry.mjs",
     "prettier": "pnpx prettier write .",
     "precommit": "pretty-quick --staged",
-    "prepare": "husky install",
+    "prepare": "pnpx husky install",
     "migrate": "pnpx prisma generate && pnpx prisma migrate deploy",
     "prod:migrate": "pnpm run migrate && pnpm run prod"
   },
