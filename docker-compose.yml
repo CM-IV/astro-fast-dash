@@ -4,6 +4,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=5076
+    container_name: fast-dash-client
     image: solonsscale/fast-dash-postgres:latest
     working_dir: /app
     stdin_open: true
@@ -17,7 +18,7 @@ services:
   db:
     image: postgres:13-alpine
     restart: always
-    container_name: db
+    container_name: fast-dash-db
     environment:
       - POSTGRES_DB=Shortcuts
       - POSTGRES_PASSWORD=postgres
