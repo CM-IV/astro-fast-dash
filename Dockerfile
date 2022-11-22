@@ -1,17 +1,18 @@
 ##### BUILDER
 
-FROM node:lts as builder
+FROM node:18-slim as builder
 
 WORKDIR /app
 
 LABEL name=fast-dash
 LABEL intermediate=true
 
-RUN git clone https://github.com/CM-IV/astro-fast-dash.git
-
-RUN cp -r /app/astro-fast-dash/* .
-
-RUN rm -rf /app/astro-fast-dash
+COPY package.json .
+COPY astro.config.mjs .
+COPY src/ src/
+COPY prisma/ prisma/
+COPY pnpm-lock.yaml .
+COPY tsconfig.json .
 
 RUN corepack enable
 
