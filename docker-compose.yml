@@ -4,6 +4,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=5076
+      - DATABASE_URL=file:../db/data.sqlite
     image: solonsscale/fast-dash:latest
     working_dir: /app
     stdin_open: true

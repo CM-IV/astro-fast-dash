@@ -1,20 +1,17 @@
 ##### BUILDER
 
-FROM node:18-slim as builder
+FROM node:lts as builder
 
 WORKDIR /app
 
 LABEL name=fast-dash
 LABEL intermediate=true
 
-COPY package.json .
-COPY .env .
-COPY astro.config.mjs .
-COPY public/ public/
-COPY src/ src/
-COPY prisma/ prisma/
-COPY pnpm-lock.yaml .
-COPY tsconfig.json .
+RUN git clone https://github.com/CM-IV/astro-fast-dash.git
+
+RUN cp -r /app/astro-fast-dash/* .
+
+RUN rm -rf /app/astro-fast-dash
 
 RUN corepack enable
 
@@ -30,7 +27,12 @@ WORKDIR /app
 
 LABEL name=fast-dash
 
-COPY --from=builder /app/ .
+COPY --from=builder /app/package.json .
+COPY --from=builder /app/astro.config.mjs .
+COPY --from=builder /app/prisma/ prisma/
+COPY --from=builder /app/pnpm-lock.yaml .
+COPY --from=builder /app/tsconfig.json .
+COPY --from=builder /app/dist/ dist/
 
 RUN apk update && apk add --no-cache libc6-compat
 
