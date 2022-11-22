@@ -4,6 +4,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=5076
+      - DATABASE_URL=postgresql://postgres:postgres@fast-dash-db:5432/Shortcuts
     container_name: fast-dash-client
     image: solonsscale/fast-dash-postgres:latest
     working_dir: /app
