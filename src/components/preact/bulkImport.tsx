@@ -23,15 +23,12 @@ const BulkImport = () => {
 
       const apiRes = await res.json();
 
-      console.log(apiRes);
       setMsgData(apiRes);
 
       if (apiRes.success == false) {
         setIsError(true);
         setMsgData(apiRes.error.issues[0].message);
-        setTimeout(function () {
-          window.location.reload();
-        }, 3000);
+        throw new Error();
       }
 
       setIsSuccess(true);
