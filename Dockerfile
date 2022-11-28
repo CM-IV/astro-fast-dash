@@ -13,6 +13,8 @@ COPY src/ src/
 COPY prisma/ prisma/
 COPY pnpm-lock.yaml .
 COPY tsconfig.json .
+COPY postcss.config.cjs .
+
 
 RUN corepack enable
 
@@ -33,6 +35,7 @@ COPY --from=builder /app/astro.config.mjs .
 COPY --from=builder /app/prisma/ prisma/
 COPY --from=builder /app/pnpm-lock.yaml .
 COPY --from=builder /app/tsconfig.json .
+COPY --from=builder /app/postcss.config.cjs .
 COPY --from=builder /app/dist/ dist/
 
 RUN apk update && apk add --no-cache libc6-compat
