@@ -2,7 +2,9 @@
 
 ## Made with [Astro](https://astro.build) SSR
 
-![](https://ik.imagekit.io/xbkhabiqcy9/img/Screenshot_2022-11-18_at_13-28-10_Fast-Dash_8lWJaNCRHe.png?ik-sdk-version=javascript-1.4.3&updatedAt=1668799709688)
+Featuring Bulk imports/exports with a Postgres database!
+
+![image](https://user-images.githubusercontent.com/44551614/204314831-4b0422e8-438f-4ed6-97fc-b6c77ca81d19.png)
 
 ## 🧞 Commands
 
