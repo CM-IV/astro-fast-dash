@@ -6,7 +6,7 @@ services:
       - PORT=5076
       - DATABASE_URL=postgresql://postgres:postgres@fast-dash-db:5432/Shortcuts
     container_name: fast-dash-client
-    image: solonsscale/fast-dash-postgres:latest
+    image: docker.io/solonsscale/fast-dash-postgres:latest
     working_dir: /app
     stdin_open: true
     ports:
@@ -17,7 +17,7 @@ services:
     depends_on:
       - db
   db:
-    image: postgres:13-alpine
+    image: docker.io/postgres:13-alpine
     restart: always
     container_name: fast-dash-db
     environment:

@@ -73,7 +73,7 @@ const BulkImport = () => {
                   class="textarea"
                   placeholder="Array of Objects"
                   rows={20}
-                  onChange={(e) =>
+                  onInput={(e) =>
                     setShortcutData(JSON.parse(e.currentTarget.value))
                   }
                 ></textarea>

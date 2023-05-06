@@ -49,7 +49,7 @@ const AddShortcuts = () => {
                   <label class="label">Name</label>
                   <div class="control">
                     <input
-                      onChange={(e) => setName(e.currentTarget.value)}
+                      onInput={(e) => setName(e.currentTarget.value)}
                       class="input"
                       type="text"
                       defaultValue={""}
@@ -61,7 +61,7 @@ const AddShortcuts = () => {
                   <label class="label">URL</label>
                   <div class="control">
                     <input
-                      onChange={(e) => setUrl(e.currentTarget.value)}
+                      onInput={(e) => setUrl(e.currentTarget.value)}
                       class="input"
                       type="url"
                       defaultValue={""}
@@ -73,7 +73,7 @@ const AddShortcuts = () => {
                   <label class="label">Thumbnail</label>
                   <div class="control">
                     <input
-                      onChange={(e) => setThumbnail(e.currentTarget.value)}
+                      onInput={(e) => setThumbnail(e.currentTarget.value)}
                       class="input"
                       type="url"
                       defaultValue={""}

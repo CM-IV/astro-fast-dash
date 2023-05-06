@@ -40,6 +40,6 @@ COPY --from=builder /app/dist/ dist/
 
 RUN apk update && apk add --no-cache libc6-compat
 
-RUN corepack enable && corepack prepare pnpm@7.15.0 --activate 
+RUN corepack enable && corepack prepare pnpm@8.3.1 --activate 
 
 CMD ["pnpm", "run", "prod:migrate"]

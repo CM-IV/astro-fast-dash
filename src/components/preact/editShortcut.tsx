@@ -74,7 +74,7 @@ const EditShortcut = ({ data }: any) => {
             <div class="control">
               <input
                 value={name}
-                onChange={(e) => setName(e.currentTarget.value)}
+                onInput={(e) => setName(e.currentTarget.value)}
                 class="input"
                 type="text"
                 required
@@ -86,7 +86,7 @@ const EditShortcut = ({ data }: any) => {
             <div class="control">
               <input
                 value={url}
-                onChange={(e) => setUrl(e.currentTarget.value)}
+                onInput={(e) => setUrl(e.currentTarget.value)}
                 class="input"
                 type="url"
                 required
@@ -98,7 +98,7 @@ const EditShortcut = ({ data }: any) => {
             <div class="control">
               <input
                 value={thumbnail}
-                onChange={(e) => setThumbnail(e.currentTarget.value)}
+                onInput={(e) => setThumbnail(e.currentTarget.value)}
                 class="input"
                 type="url"
                 required
