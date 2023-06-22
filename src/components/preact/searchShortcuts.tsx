@@ -109,14 +109,14 @@ const SearchShortcuts = () => {
                       <div class="media-content">
                         <a href={s.url}>
                           <div class="content">
-                            <p class="is-size-5 has-text-black">{s.name}</p>
+                            <p class="is-size-5 has-text-white">{s.name}</p>
                           </div>
                         </a>
                       </div>
                       <div className="media-right">
                         <a href={`/shortcuts/${s.id}/edit`}>
                           <span class="icon is-small mt-2">
-                            <i class="fa fa-ellipsis-v has-text-black"></i>
+                            <i class="fa fa-ellipsis-v has-text-white"></i>
                           </span>
                         </a>
                       </div>

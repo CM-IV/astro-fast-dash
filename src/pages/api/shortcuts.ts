@@ -1,23 +1,24 @@
 import type { APIRoute } from "astro";
-import { handleShortcut } from "@utils/validator";
 import { db } from "@db/init";
+import { handleShortcut } from "@utils/validator";
+import { errors } from "@vinejs/vine";
 
 export const post: APIRoute = async ({ request }) => {
   try {
     const result = await handleShortcut(await request.json());
 
-    if (!result.success) {
-      return new Response(JSON.stringify(result.error.message), {
+    if (result instanceof errors.E_VALIDATION_ERROR) {
+      return new Response(null, {
         status: 400,
         statusText: "Bad Request",
       });
     }
 
-    await db.shortcut.create({
-      data: { ...result.data },
+    const shortcut = await db.shortcut.create({
+      data: { ...result },
     });
 
-    return new Response(JSON.stringify(result.data), {
+    return new Response(JSON.stringify(shortcut), {
       status: 201,
       statusText: "Created Successfully",
     });

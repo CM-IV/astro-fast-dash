@@ -93,7 +93,7 @@ const AddShortcuts = () => {
           </div>
         </div>
       </div>
-      <button class="button is-rounded mt-5" onClick={handleToggle}>
+      <button class="button mt-5 is-link" onClick={handleToggle}>
         Add Shortcut
       </button>
     </div>

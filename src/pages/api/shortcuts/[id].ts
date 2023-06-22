@@ -1,14 +1,16 @@
 import type { APIRoute } from "astro";
 import { db } from "@db/init";
-import { handleShortcut } from "@utils/validator";
+import { errors } from "@vinejs/vine";
+import { handleShortcut } from "@src/utils/validator";
 
 export const put: APIRoute = async ({ request, params }) => {
   try {
     const id = params.id as string;
+
     const result = await handleShortcut(await request.json());
 
-    if (!result.success) {
-      return new Response(JSON.stringify(result.error.message), {
+    if (result instanceof errors.E_VALIDATION_ERROR) {
+      return new Response(null, {
         status: 400,
         statusText: "Bad Request",
       });
@@ -18,10 +20,10 @@ export const put: APIRoute = async ({ request, params }) => {
       where: {
         id: id,
       },
-      data: { ...result.data },
+      data: { ...result },
     });
 
-    return new Response(JSON.stringify(result.data), {
+    return new Response(JSON.stringify(result), {
       status: 200,
       statusText: "Updated Successfully",
     });
