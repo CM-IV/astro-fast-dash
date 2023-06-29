@@ -43,6 +43,10 @@ a {
     flex-wrap: wrap;
     flex-shrink: 0;
   }
+
+  .navbar-item {
+    color: #ffff;
+  }
 }
 
 @media (max-width: 1407px) {
@@ -50,6 +54,9 @@ a {
     min-width: 0;
     min-height: 0;
     overflow: hidden;
+  }
+  span {
+    color: #ffff;
   }
 }
 

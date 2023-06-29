@@ -21,7 +21,7 @@
     "@astrojs/preact": "^2.2.1",
     "@prisma/client": "^4.16.0",
     "@vinejs/vine": "^1.4.1",
-    "astro": "^2.7.0",
+    "astro": "^2.7.2",
     "fuse.js": "^6.6.2",
     "preact": "^10.15.1"
   },
